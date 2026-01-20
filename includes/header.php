@@ -22,7 +22,9 @@ if (session_status() === PHP_SESSION_NONE) session_start();
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="/Attendr/index.php" class="text-xl font-semibold text-indigo-600">Attendr</a>
             <nav>
-                <a href="/Attendr/auth/login.php" class="py-1.5 px-5 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-700 transition font-medium text-sm">Login</a>
+                <?php if (!isset($_SESSION['admin_id']) && !isset($_SESSION['user_id'])): ?>
+                    <a href="/Attendr/auth/login.php" class="py-1.5 px-5 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-700 transition font-medium text-sm">Login</a>
+                <?php endif; ?>
             </nav>
         </div>
     </header>
