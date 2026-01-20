@@ -31,7 +31,7 @@ $events = $pdo->query('SELECT id, title FROM events ORDER BY title')->fetchAll()
 ?>
 <div class="flex min-h-[80vh]">
     <?php include 'sidebar.php'; ?>
-    <main class="flex-1 px-8 py-10 ml-60">
+    <main class="flex-1 px-8 py-10 lg:ml-72">
 
         <div class="w-full max-w-[1200px] mx-auto">
             <form method="get" id="participantFilterForm" class="flex flex-row flex-wrap gap-3 mb-3 items-center justify-between w-full">

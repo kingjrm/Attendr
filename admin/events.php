@@ -9,7 +9,7 @@ $events = $pdo->query('SELECT * FROM events ORDER BY event_date DESC, event_time
 ?>
 <div class="flex min-h-[80vh]">
     <?php include 'sidebar.php'; ?>
-    <main class="flex-1 px-8 py-10 ml-60">
+    <main class="flex-1 px-8 py-10 lg:ml-72">
         <div class="w-full max-w-[1200px] mx-auto">
             <div class="flex flex-row flex-wrap items-center justify-between mb-3">
                 <form method="get" id="eventFilterForm" class="flex flex-row gap-2 items-center w-full max-w-[70%]">
