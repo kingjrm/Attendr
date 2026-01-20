@@ -48,10 +48,11 @@ $users = $pdo->query('SELECT id, name FROM users ORDER BY name')->fetchAll();
                 <table class="w-full text-sm whitespace-nowrap bg-white shadow border border-gray-100">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="py-1.5 px-3 font-semibold text-gray-600">Date</th>
-                        <th class="py-1.5 px-3 font-semibold text-gray-600">User</th>
-                        <th class="py-1.5 px-3 font-semibold text-gray-600">Action</th>
-                        <th class="py-1.5 px-3 font-semibold text-gray-600">IP</th>
+                        <th class="py-3 px-4 font-semibold text-gray-600 text-center">Date</th>
+                        <th class="py-3 px-4 font-semibold text-gray-600 text-center">User</th>
+                        <th class="py-3 px-4 font-semibold text-gray-600 text-center">Action</th>
+                        <th class="py-3 px-4 font-semibold text-gray-600 text-center">IP</th>
+                        <th class="py-3 px-4 font-semibold text-gray-600 text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,10 +63,15 @@ $users = $pdo->query('SELECT id, name FROM users ORDER BY name')->fetchAll();
                     <?php else: ?>
                         <?php foreach ($logs as $log): ?>
                         <tr class="border-b hover:bg-gray-50">
-                            <td class="py-3 px-5 text-xs text-gray-500"><?php echo htmlspecialchars($log['created_at']); ?></td>
-                            <td class="py-3 px-5"><?php echo htmlspecialchars($log['name'] ?? 'Unknown'); ?></td>
-                            <td class="py-3 px-5"><?php echo htmlspecialchars($log['action']); ?></td>
-                            <td class="py-3 px-5 text-xs text-gray-500"><?php echo htmlspecialchars($log['ip_address']); ?></td>
+                            <td class="py-3 px-4 text-xs text-gray-500 text-center"><?php echo htmlspecialchars($log['created_at']); ?></td>
+                            <td class="py-3 px-4 text-center"><?php echo htmlspecialchars($log['name'] ?? 'Unknown'); ?></td>
+                            <td class="py-3 px-4 text-center"><?php echo htmlspecialchars($log['action']); ?></td>
+                            <td class="py-3 px-4 text-xs text-gray-500 text-center"><?php echo htmlspecialchars($log['ip_address']); ?></td>
+                            <td class="py-3 px-4 flex gap-2 justify-center">
+                                <span class="p-2 rounded bg-gray-50 text-gray-400 cursor-not-allowed" title="View (coming soon)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9 0a9 9 0 0118 0a9 9 0 01-18 0z" /></svg>
+                                </span>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>

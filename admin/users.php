@@ -46,12 +46,12 @@ $users = $stmt->fetchAll();
                 <table class="w-full text-sm whitespace-nowrap bg-white shadow border border-gray-100">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">ID</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Name</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Email</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Role</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Created</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Actions</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">ID</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Name</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Email</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Role</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Created</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,18 +62,22 @@ $users = $stmt->fetchAll();
                         <?php else: ?>
                         <?php foreach ($users as $user): ?>
                         <tr class="border-b last:border-0 hover:bg-gray-50 transition">
-                            <td class="py-3 px-5 font-mono text-xs text-gray-500">#<?php echo htmlspecialchars($user['id'] ?? ''); ?></td>
-                            <td class="py-3 px-5 font-medium text-gray-800"><?php echo htmlspecialchars($user['name'] ?? ''); ?></td>
-                            <td class="py-3 px-5 text-gray-700"><?php echo htmlspecialchars($user['email'] ?? ''); ?></td>
-                            <td class="py-3 px-5">
+                            <td class="py-3 px-4 font-mono text-xs text-gray-500 text-center">#<?php echo htmlspecialchars($user['id'] ?? ''); ?></td>
+                            <td class="py-3 px-4 font-medium text-gray-800 text-center"><?php echo htmlspecialchars($user['name'] ?? ''); ?></td>
+                            <td class="py-3 px-4 text-gray-700 text-center"><?php echo htmlspecialchars($user['email'] ?? ''); ?></td>
+                            <td class="py-3 px-4 text-center">
                                 <span class="inline-block px-2 py-1 rounded text-xs font-semibold <?php echo (isset($user['role']) && $user['role']=='admin')?'bg-indigo-100 text-indigo-700':'bg-gray-100 text-gray-700'; ?>">
                                     <?php echo isset($user['role']) ? ucfirst($user['role']) : '-'; ?>
                                 </span>
                             </td>
-                            <td class="py-3 px-5 text-xs text-gray-500"><?php echo isset($user['created_at']) ? date('Y-m-d', strtotime($user['created_at'])) : ''; ?></td>
-                            <td class="py-3 px-5">
-                                <button class="px-3 py-1 text-xs rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-semibold transition">Edit</button>
-                                <button class="px-3 py-1 text-xs rounded bg-red-50 text-red-600 hover:bg-red-100 font-semibold ml-2 transition">Delete</button>
+                            <td class="py-3 px-4 text-xs text-gray-500 text-center"><?php echo isset($user['created_at']) ? date('Y-m-d', strtotime($user['created_at'])) : ''; ?></td>
+                            <td class="py-3 px-4 flex gap-2 justify-center">
+                                <button class="p-2 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition" title="Edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536M9 13h3l8-8a2.828 2.828 0 00-4-4l-8 8v3z" /></svg>
+                                </button>
+                                <button class="p-2 rounded bg-red-50 text-red-600 hover:bg-red-100 transition" title="Delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                </button>
                             </td>
                         </tr>
                         <?php endforeach; ?>

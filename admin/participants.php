@@ -57,12 +57,12 @@ $events = $pdo->query('SELECT id, title FROM events ORDER BY title')->fetchAll()
                 <table class="w-full text-sm whitespace-nowrap bg-white shadow border border-gray-100">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Name</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Email</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Event</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Registered At</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Status</th>
-                            <th class="py-3 px-5 font-semibold text-gray-600 text-left">Actions</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Name</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Email</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Event</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Registered At</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Status</th>
+                            <th class="py-3 px-4 font-semibold text-gray-600 text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,20 +73,24 @@ $events = $pdo->query('SELECT id, title FROM events ORDER BY title')->fetchAll()
                     <?php else: ?>
                         <?php foreach ($participants as $p): ?>
                         <tr class="border-b last:border-0 hover:bg-gray-50 transition">
-                            <td class="py-3 px-5 font-medium text-gray-800"><?php echo htmlspecialchars($p['name']); ?></td>
-                            <td class="py-3 px-5 text-gray-700"><?php echo htmlspecialchars($p['email']); ?></td>
-                            <td class="py-3 px-5"><?php echo htmlspecialchars($p['event_title']); ?></td>
-                            <td class="py-3 px-5 text-xs text-gray-500"><?php echo htmlspecialchars($p['registered_at']); ?></td>
-                            <td class="py-3 px-5">
+                            <td class="py-3 px-4 font-medium text-gray-800 text-center"><?php echo htmlspecialchars($p['name']); ?></td>
+                            <td class="py-3 px-4 text-gray-700 text-center"><?php echo htmlspecialchars($p['email']); ?></td>
+                            <td class="py-3 px-4 text-center"><?php echo htmlspecialchars($p['event_title']); ?></td>
+                            <td class="py-3 px-4 text-xs text-gray-500 text-center"><?php echo htmlspecialchars($p['registered_at']); ?></td>
+                            <td class="py-3 px-4 text-center">
                                 <?php if ($p['checked_in']): ?>
                                     <span class="inline-block px-2 py-1 rounded text-xs font-semibold bg-green-100 text-green-700">Checked-in</span>
                                 <?php else: ?>
                                     <span class="inline-block px-2 py-1 rounded text-xs font-semibold bg-gray-100 text-gray-700">Not checked-in</span>
                                 <?php endif; ?>
                             </td>
-                            <td class="py-3 px-5">
-                                <a href="checkin.php?registration_id=<?php echo $p['id']; ?>" class="px-3 py-1 text-xs rounded bg-blue-50 text-blue-700 hover:bg-blue-100 font-semibold transition">Check-in</a>
-                                <a href="delete-registration.php?id=<?php echo $p['id']; ?>" class="px-3 py-1 text-xs rounded bg-red-50 text-red-600 hover:bg-red-100 font-semibold ml-2 transition" onclick="return confirm('Delete this registration?')">Delete</a>
+                            <td class="py-3 px-4 flex gap-2 justify-center">
+                                <a href="checkin.php?registration_id=<?php echo $p['id']; ?>" class="p-2 rounded bg-blue-50 text-blue-700 hover:bg-blue-100 transition" title="Check-in">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                </a>
+                                <a href="delete-registration.php?id=<?php echo $p['id']; ?>" class="p-2 rounded bg-red-50 text-red-600 hover:bg-red-100 transition" title="Delete" onclick="return confirm('Delete this registration?')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
