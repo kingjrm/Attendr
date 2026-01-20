@@ -1,0 +1,44 @@
+/* Global custom styles for Attendr */
+html {
+  font-size: 15px;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9fafb;
+  color: #22223b;
+}
+.table-compact th, .table-compact td {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.95rem;
+}
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  font-size: 0.85em;
+  border-radius: 0.5em;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-weight: 500;
+}
+.shadow-soft {
+  box-shadow: 0 2px 8px 0 rgba(30, 41, 59, 0.07);
+}
+.rounded-soft {
+  border-radius: 0.7rem;
+}
+input, select, textarea {
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+}
+form label {
+  font-weight: 500;
+  color: #6366f1;
+  margin-bottom: 0.2rem;
+}
+form .error {
+  color: #ef4444;
+  font-size: 0.9em;
+  margin-top: 0.2em;
+}
