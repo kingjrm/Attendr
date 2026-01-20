@@ -12,9 +12,15 @@ $active = basename($_SERVER['PHP_SELF']);
             <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"/></svg>
             Dashboard
         </a>
-        <a href="create-event.php" class="flex items-center gap-3 py-2.5 px-4 rounded-lg transition font-medium <?php echo $active=='create-event.php'?'bg-indigo-50 text-indigo-700':'text-gray-700 hover:bg-gray-50'; ?>">
-            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-            Create Event
+        <!-- Removed Create Event tab, add User Management and more -->
+        <!-- Only one Events List and Participants link -->
+        <a href="users.php" class="flex items-center gap-3 py-2.5 px-4 rounded-lg transition font-medium <?php echo $active=='users.php'?'bg-indigo-50 text-indigo-700':'text-gray-700 hover:bg-gray-50'; ?>">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a7.5 7.5 0 0113 0"/></svg>
+            User Management
+        </a>
+        <a href="audit-logs.php" class="flex items-center gap-3 py-2.5 px-4 rounded-lg transition font-medium <?php echo $active=='audit-logs.php'?'bg-indigo-50 text-indigo-700':'text-gray-700 hover:bg-gray-50'; ?>">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Audit Logs
         </a>
         <a href="events.php" class="flex items-center gap-3 py-2.5 px-4 rounded-lg transition font-medium <?php echo $active=='events.php'?'bg-indigo-50 text-indigo-700':'text-gray-700 hover:bg-gray-50'; ?>">
             <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2a4 4 0 018 0v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
