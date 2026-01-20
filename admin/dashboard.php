@@ -29,6 +29,81 @@ $upcoming_events = $pdo->query('SELECT COUNT(*) FROM events WHERE event_date >= 
                 <span class="text-gray-500 mt-1">Upcoming Events</span>
             </div>
         </div>
+        <!-- Graphs Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-xl shadow p-6 border border-gray-100">
+                <h3 class="text-lg font-semibold mb-4 text-indigo-700">Events Over Time</h3>
+                <canvas id="eventsChart" height="180"></canvas>
+            </div>
+            <div class="bg-white rounded-xl shadow p-6 border border-gray-100">
+                <h3 class="text-lg font-semibold mb-4 text-indigo-700">Participants Per Event</h3>
+                <canvas id="participantsChart" height="180"></canvas>
+            </div>
+        </div>
+        <!-- Chart.js CDN -->
+        <?php include '../assets/chartjs-cdn.html'; ?>
+        <script>
+        // Example data for Events Over Time
+        const eventsLabels = [
+            <?php foreach ($events as $event) {
+                echo "'" . date('M d', strtotime($event['event_date'])) . "',";
+            } ?>
+        ];
+        const eventsData = [
+            <?php foreach ($events as $event) {
+                echo "1,"; // Each event counts as 1 for demo
+            } ?>
+        ];
+        // Example data for Participants Per Event
+        const participantsLabels = [
+            <?php foreach ($events as $event) {
+                echo "'" . addslashes($event['event_name']) . "',";
+            } ?>
+        ];
+        const participantsData = [
+            <?php foreach ($events as $event) {
+                $count = $pdo->query("SELECT COUNT(*) FROM registrations WHERE event_id = " . $event['id'])->fetchColumn();
+                echo $count . ",";
+            } ?>
+        ];
+        // Events Over Time Chart
+        new Chart(document.getElementById('eventsChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: eventsLabels,
+                datasets: [{
+                    label: 'Events',
+                    data: eventsData,
+                    borderColor: '#6366f1',
+                    backgroundColor: 'rgba(99,102,241,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } }
+            }
+        });
+        // Participants Per Event Chart
+        new Chart(document.getElementById('participantsChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: participantsLabels,
+                datasets: [{
+                    label: 'Participants',
+                    data: participantsData,
+                    backgroundColor: '#6366f1',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+        </script>
     </main>
 </div>
 <?php
