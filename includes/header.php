@@ -18,14 +18,19 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
-    <header class="shadow-sm bg-white mb-6">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="/Attendr/index.php" class="text-xl font-semibold text-indigo-600">Attendr</a>
-            <nav>
+    <header class="bg-white shadow-lg rounded-b-2xl" style="margin-bottom:0!important;">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="/Attendr/index.php" class="flex items-center gap-2 group">
+                <span class="text-2xl font-extrabold text-indigo-600 group-hover:text-yellow-500 transition">Attendr</span>
+                <span class="hidden sm:inline text-xs font-semibold text-gray-400 tracking-widest ml-2 group-hover:text-yellow-600 transition">Event Platform</span>
+            </a>
+            <nav class="flex gap-3">
                 <?php if (!isset($_SESSION['admin_id']) && !isset($_SESSION['user_id'])): ?>
-                    <a href="/Attendr/auth/login.php" class="py-1.5 px-5 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-700 transition font-medium text-sm">Login</a>
+                    <a href="/Attendr/participant/register.php" class="py-2 px-6 bg-white border-2 border-yellow-400 text-yellow-600 rounded-full shadow-md hover:bg-yellow-50 hover:border-yellow-500 transition font-semibold text-base">Register</a>
+                    <a href="/Attendr/auth/login.php" class="py-2 px-6 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-full shadow-md hover:from-yellow-500 hover:to-yellow-600 transition font-semibold text-base">Login</a>
                 <?php endif; ?>
             </nav>
         </div>
+        <div class="w-full h-2 bg-gradient-to-r from-yellow-100 via-white to-yellow-100 rounded-b-2xl"></div>
     </header>
-    <main class="container mx-auto px-4">
+    <main class="w-full px-0 pt-0 pb-0" style="margin-top:0!important;padding-top:0!important;padding-bottom:0!important;border-top:0!important;">
