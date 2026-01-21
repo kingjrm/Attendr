@@ -49,10 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mt-4 text-center">
                 <a href="../participant/register.php" class="text-xs text-yellow-600 hover:underline font-semibold">Register as User</a>
             </div>
-            <div class="mt-6 flex items-center justify-between text-xs text-gray-400">
-                <span>© Attendr 2026</span>
-                <a href="#" class="hover:underline">Terms & Conditions</a>
-            </div>
+            <!-- Footer removed for login page -->
         </div>
         <!-- Right: Image & Overlays -->
         <div class="hidden md:block w-1/2 relative bg-gray-100">
