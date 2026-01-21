@@ -31,29 +31,47 @@
     </div>
 </section>
 
-<!-- UPCOMING EVENTS (Sample Static) -->
+<?php
+require_once 'config/db.php';
+$events = $pdo->query('SELECT * FROM events ORDER BY event_date DESC, event_time DESC')->fetchAll();
+?>
+<!-- UPCOMING EVENTS (Dynamic) -->
 <section class="w-full bg-gray-50 py-14 px-4 border-b border-gray-100">
     <div class="max-w-5xl mx-auto">
-        <h2 class="text-2xl font-bold mb-8 text-indigo-700 flex items-center gap-2"><svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Upcoming Events</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-xl shadow-soft p-6 flex flex-col gap-2 border border-gray-100">
-                <span class="text-xs text-gray-400 mb-1">Feb 10, 2026</span>
-                <h3 class="text-lg font-bold text-gray-900">Tech Innovators Meetup</h3>
-                <span class="text-sm text-indigo-600">Main Hall, City Center</span>
-                <a href="/Attendr/participant/register.php?event=1" class="mt-3 py-2 px-4 bg-indigo-600 text-white rounded-full text-sm font-semibold text-center hover:bg-indigo-700 transition">Register</a>
-            </div>
-            <div class="bg-white rounded-xl shadow-soft p-6 flex flex-col gap-2 border border-gray-100">
-                <span class="text-xs text-gray-400 mb-1">Feb 18, 2026</span>
-                <h3 class="text-lg font-bold text-gray-900">Community Volunteer Day</h3>
-                <span class="text-sm text-indigo-600">Green Park</span>
-                <a href="/Attendr/participant/register.php?event=2" class="mt-3 py-2 px-4 bg-indigo-600 text-white rounded-full text-sm font-semibold text-center hover:bg-indigo-700 transition">Register</a>
-            </div>
-            <div class="bg-white rounded-xl shadow-soft p-6 flex flex-col gap-2 border border-gray-100">
-                <span class="text-xs text-gray-400 mb-1">Mar 2, 2026</span>
-                <h3 class="text-lg font-bold text-gray-900">Startup Pitch Night</h3>
-                <span class="text-sm text-indigo-600">Innovation Hub</span>
-                <a href="/Attendr/participant/register.php?event=3" class="mt-3 py-2 px-4 bg-indigo-600 text-white rounded-full text-sm font-semibold text-center hover:bg-indigo-700 transition">Register</a>
-            </div>
+        <h2 class="text-2xl font-bold mb-8 text-indigo-700 flex items-center gap-2">
+            <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Upcoming Events
+        </h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm whitespace-nowrap bg-white border border-gray-100 rounded-xl">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="py-3 px-4 font-semibold text-center">Title</th>
+                        <th class="py-3 px-4 font-semibold text-center">Date</th>
+                        <th class="py-3 px-4 font-semibold text-center">Time</th>
+                        <th class="py-3 px-4 font-semibold text-center">Venue</th>
+                        <th class="py-3 px-4 font-semibold text-center">Max</th>
+                        <th class="py-3 px-4 font-semibold text-center">Register</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($events)): ?>
+                        <tr><td colspan="6" class="text-gray-400 text-center py-8">No events available at the moment.</td></tr>
+                    <?php else: ?>
+                        <?php foreach ($events as $event): ?>
+                        <tr class="border-b last:border-0 hover:bg-yellow-50 transition">
+                            <td class="py-3 px-4 text-center"><?php echo htmlspecialchars($event['title']); ?></td>
+                            <td class="py-3 px-4 text-center"><?php echo htmlspecialchars($event['event_date']); ?></td>
+                            <td class="py-3 px-4 text-center"><?php echo htmlspecialchars(substr($event['event_time'],0,5)); ?></td>
+                            <td class="py-3 px-4 text-center"><?php echo htmlspecialchars($event['venue']); ?></td>
+                            <td class="py-3 px-4 text-center"><?php echo (int)$event['max_participants']; ?></td>
+                            <td class="py-3 px-4 text-center">
+                                <a href="/Attendr/participant/register.php?event=<?php echo (int)$event['id']; ?>" class="py-2 px-4 bg-indigo-600 text-white rounded-full text-sm font-semibold text-center hover:bg-indigo-700 transition">Register</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
